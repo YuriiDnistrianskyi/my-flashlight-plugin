@@ -6,6 +6,9 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 
+import android.content.Context
+import android.hardware.camera2.CameraManager
+
 /** MyFlashlightPlugin */
 class MyFlashlightPlugin :
     FlutterPlugin,
@@ -18,6 +21,7 @@ class MyFlashlightPlugin :
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         channel = MethodChannel(flutterPluginBinding.binaryMessenger, "my_flashlight_plugin")
+        context = binding.applicationContext
         channel.setMethodCallHandler(this)
     }
 
@@ -28,7 +32,7 @@ class MyFlashlightPlugin :
         if (call.method == "flashlightCommand") {
             val isOn = call.argument<Boolean>("isOn") ?: false
 
-            val cameraManager = context.getSestemService(Context.CAMERA_SERVICE) as CameraManager
+            val cameraManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
 
             for (cameraId in cameraManager.cameraIdList) {
                 val characteristics = cameraManager.getCameraCharacteristics(cameraId)
