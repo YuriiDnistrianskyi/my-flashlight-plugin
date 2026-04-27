@@ -25,7 +25,7 @@ class MyFlashlightPlugin :
         call: MethodCall,
         result: Result
     ) {
-        if (call.method == "flushlightCommand") {
+        if (call.method == "flashlightCommand") {
             val isOn = call.argument<Boolean>("isOn") ?: false
 
             val cameraManager = context.getSestemService(Context.CAMERA_SERVICE) as CameraManager
