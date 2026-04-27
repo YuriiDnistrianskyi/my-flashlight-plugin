@@ -25,8 +25,24 @@ class MyFlashlightPlugin :
         call: MethodCall,
         result: Result
     ) {
-        if (call.method == "getPlatformVersion") {
-            result.success("Android ${android.os.Build.VERSION.RELEASE}")
+        if (call.method == "flushlightCommand") {
+            val isOn = call.argument<Boolean>("isOn") ?: false
+
+            val cameraManager = context.getSestemService(Context.CAMERA_SERVICE) as CameraManager
+
+            for (cameraId in cameraManager.cameraIdList) {
+                val characteristics = cameraManager.getCameraCharacteristics(cameraId)
+                val hasFlash = characteristics.get(
+                    android.hardware.camera2.CameraCharacteristics.FLASH_INFO_AVAILABLE
+                ) == true
+
+                if (hasFlash) {
+                    cameraManager.setTorchMode(cameraId, isOn)
+                    break
+                }
+            }
+
+            result.success(null)
         } else {
             result.notImplemented()
         }

@@ -16,4 +16,11 @@ class MethodChannelMyFlashlightPlugin extends MyFlashlightPluginPlatform {
     );
     return version;
   }
+
+  @override
+  Future<void> flashlightCommand(bool command) async {
+    await methodChannel.invokeMethod(
+      'flushlightCommand', {'isOn': command}
+    );
+  }
 }

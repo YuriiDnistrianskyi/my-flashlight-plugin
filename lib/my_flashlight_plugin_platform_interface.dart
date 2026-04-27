@@ -26,4 +26,6 @@ abstract class MyFlashlightPluginPlatform extends PlatformInterface {
   Future<String?> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
+
+  Future<void> flashlightCommand(bool command);
 }
