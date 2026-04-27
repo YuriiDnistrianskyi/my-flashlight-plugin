@@ -19,4 +19,10 @@ class MyFlashlightPlugin {
   Future<void> flashlightOff() async {
     await MyFlashlightPluginPlatform.instance.flashlightCommand(false);
   }
+
+  Future<void> flash(int delay) async {
+    await MyFlashlightPluginPlatform.instance.flashlightCommand(true);
+    Future<void>.delayed(Duration(seconds: delay));
+    await MyFlashlightPluginPlatform.instance.flashlightCommand(false);
+  }
 }
