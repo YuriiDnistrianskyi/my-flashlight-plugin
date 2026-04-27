@@ -48,6 +48,8 @@ class MyFlashlightPlugin :
             }
 
             result.success(null)
+        } else if (call.method == 'isSupported') {
+            result.success(true);
         } else {
             result.notImplemented()
         }
