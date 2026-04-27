@@ -39,6 +39,9 @@ flutter:
     # then add platforms following the instruction here:
     # https://flutter.dev/to/pubspec-plugin-platforms
     # -------------------
+      android:
+        package: com.example.my_flashlight_plugin
+        pluginClass: MyFlashlightPlugin
       some_platform:
         pluginClass: somePluginClass
     # -------------------
