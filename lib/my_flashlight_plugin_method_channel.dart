@@ -18,6 +18,14 @@ class MethodChannelMyFlashlightPlugin extends MyFlashlightPluginPlatform {
   }
 
   @override
+  Future<bool> isSupported() async {
+    final isSupported = await methodChannel.invokeMethod<bool>(
+      'isSupported'
+    );
+    return isSupported!;
+  }
+
+  @override
   Future<void> flashlightCommand(bool command) async {
     await methodChannel.invokeMethod(
       'flashlightCommand', {'isOn': command}

@@ -12,6 +12,10 @@ class MyFlashlightPlugin {
     return MyFlashlightPluginPlatform.instance.getPlatformVersion();
   }
 
+  Future<bool> isSupported() {
+    return MyFlashlightPluginPlatform.instance.isSupported();
+  }
+
   Future<void> flashlightOn() async {
     await MyFlashlightPluginPlatform.instance.flashlightCommand(true);
   }
