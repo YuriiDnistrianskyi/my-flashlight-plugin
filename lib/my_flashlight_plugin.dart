@@ -22,7 +22,7 @@ class MyFlashlightPlugin {
 
   Future<void> flash(int delay) async {
     await MyFlashlightPluginPlatform.instance.flashlightCommand(true);
-    Future<void>.delayed(Duration(seconds: delay));
+    await Future<void>.delayed(Duration(seconds: delay));
     await MyFlashlightPluginPlatform.instance.flashlightCommand(false);
   }
 }
