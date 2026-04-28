@@ -12,19 +12,19 @@ class MyFlashlightPlugin {
     return MyFlashlightPluginPlatform.instance.getPlatformVersion();
   }
 
-  Future<bool> isSupported() {
+  static Future<bool> isSupported() {
     return MyFlashlightPluginPlatform.instance.isSupported();
   }
 
-  Future<void> flashlightOn() async {
+  static Future<void> flashlightOn() async {
     await MyFlashlightPluginPlatform.instance.flashlightCommand(true);
   }
 
-  Future<void> flashlightOff() async {
+  static  Future<void> flashlightOff() async {
     await MyFlashlightPluginPlatform.instance.flashlightCommand(false);
   }
 
-  Future<void> flash(int delay) async {
+  static Future<void> flash(int delay) async {
     await MyFlashlightPluginPlatform.instance.flashlightCommand(true);
     await Future<void>.delayed(Duration(seconds: delay));
     await MyFlashlightPluginPlatform.instance.flashlightCommand(false);
